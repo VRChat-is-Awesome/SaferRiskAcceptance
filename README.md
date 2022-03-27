@@ -1,3 +1,9 @@
+# SaferRiskAcceptance
+This repository is a fork of AstralRiskAcceptance where I compile it for my friends. It's not really "safer" if you don't know me in game and trust me. I know the mod builds deterministically but I made two other changes:
+- The URL of allowed.txt points to one I control and points to a specific version so I can't change it and possibly do some weird exploit.
+- I added some dependicies in the .csproj file so it would build on my machine.
+
+Credits for 99% of the work goes to the upstream repository and its readme is pasted below.
 # AstralRiskAcceptance
 Forces RiskyFunctions to be allowed
 
