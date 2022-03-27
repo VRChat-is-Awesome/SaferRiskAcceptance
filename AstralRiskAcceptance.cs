@@ -5,7 +5,7 @@ using System;
 using System.Net;
 using System.Reflection;
 
-[assembly: MelonInfo(typeof(Astrum.AstralRiskAcceptance), "AstralRiskAcceptance", "0.4.1", downloadLink: "github.com/Astrum-Project/AstralRiskAcceptance")]
+[assembly: MelonInfo(typeof(Astrum.AstralRiskAcceptance), "SaferRiskAcceptance", "0.4.1", downloadLink: "https://github.com/VRChat-is-Awesome/SaferRiskAcceptance")]
 [assembly: MelonGame("VRChat", "VRChat")]
 [assembly: MelonColor(ConsoleColor.DarkMagenta)]
 
@@ -63,13 +63,13 @@ namespace Astrum
         private static void Prehook_0_string(ref string __0)
         {
             if (__0.ToLower().Contains("riskyfuncs"))
-                __0 = "https://raw.githubusercontent.com/xKiraiChan/xKiraiChan/master/allowed.txt";
+                __0 = "https://raw.githubusercontent.com/VRChat-is-Awesome/SaferRiskAcceptance/master/allowed.txt";
         }
 
         private static void Prehook_0_Uri(ref Uri __0)
         {
             if (__0.AbsoluteUri.ToLower().Contains("riskyfuncs"))
-                __0 = new Uri("https://raw.githubusercontent.com/xKiraiChan/xKiraiChan/master/allowed.txt");
+                __0 = new Uri("https://raw.githubusercontent.com/VRChat-is-Awesome/SaferRiskAcceptance/master/allowed.txt");
         }
     }
 }
