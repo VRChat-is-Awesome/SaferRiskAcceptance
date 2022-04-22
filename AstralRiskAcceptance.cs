@@ -1,11 +1,11 @@
-﻿#pragma warning disable CS0618 // Type or member is obsolete
-
 using MelonLoader;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
+using VRC.Core;
 
-[assembly: MelonInfo(typeof(Astrum.AstralRiskAcceptance), "SaferRiskAcceptance", "0.4.1", downloadLink: "https://github.com/VRChat-is-Awesome/SaferRiskAcceptance")]
+[assembly: MelonInfo(typeof(Astrum.AstralRiskAcceptance), "SaferRiskAcceptance", "0.5.0", downloadLink: "https://github.com/VRChat-is-Awesome/SaferRiskAcceptance")]
 [assembly: MelonGame("VRChat", "VRChat")]
 [assembly: MelonColor(ConsoleColor.DarkMagenta)]
 
@@ -25,6 +25,11 @@ namespace Astrum
             TryHook("WebClient.DownloadString",
                 typeof(WebClient).GetMethod(nameof(WebClient.DownloadString), new Type[1] { typeof(string) }),
                 typeof(AstralRiskAcceptance).GetMethod(nameof(Prehook_0_string), PrivateStatic).ToNewHarmonyMethod()
+            );
+            
+            TryHook("ApiWorld.tags",
+                typeof(ApiWorld).GetProperty(nameof(ApiWorld.tags)).GetSetMethod(), 
+                typeof(AstralRiskAcceptance).GetMethod(nameof(Prehook_0_Tags), PrivateStatic).ToNewHarmonyMethod()
             );
         }
 
@@ -71,5 +76,7 @@ namespace Astrum
             if (__0.AbsoluteUri.ToLower().Contains("riskyfuncs"))
                 __0 = new Uri("https://raw.githubusercontent.com/VRChat-is-Awesome/SaferRiskAcceptance/master/allowed.txt");
         }
+
+        private static void Prehook_0_Tags(ref List<string> __0) => __0 = new List<string>();
     }
 }
