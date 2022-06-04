@@ -1,9 +1,7 @@
 using MelonLoader;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
-using VRC.Core;
 
 [assembly: MelonInfo(typeof(Astrum.AstralRiskAcceptance), "SaferRiskAcceptance", "0.6.0", "VRChat is Awesome")]
 [assembly: MelonGame("VRChat", "VRChat")]
@@ -25,11 +23,6 @@ namespace Astrum
             TryHook("WebClient.DownloadString",
                 typeof(WebClient).GetMethod(nameof(WebClient.DownloadString), new Type[1] { typeof(string) }),
                 typeof(AstralRiskAcceptance).GetMethod(nameof(Prehook_0_string), PrivateStatic).ToNewHarmonyMethod()
-            );
-            
-            TryHook("RoomManager.Method_Public_Static_Boolean_ApiWorld_ApiWorldInstance_String_Int32_0",
-                typeof(RoomManager).GetMethod(nameof(RoomManager.Method_Public_Static_Boolean_ApiWorld_ApiWorldInstance_String_Int32_0)), 
-                typeof(AstralRiskAcceptance).GetMethod(nameof(Prehook_0_ApiWorld), PrivateStatic).ToNewHarmonyMethod()
             );
         }
 
@@ -75,12 +68,6 @@ namespace Astrum
         {
             if (__0.AbsoluteUri.ToLower().Contains("riskyfuncs"))
                 __0 = new Uri("https://raw.githubusercontent.com/VRChat-is-Awesome/SaferRiskAcceptance/master/allowed.txt");
-        }
-
-        private static void Prehook_0_ApiWorld(ref ApiWorld __0)
-        {
-            __0.name = __0.name.ToLower().Replace("game", "gamē").Replace("club", "clüb");
-            __0.tags = new();
         }
     }
 }
