@@ -79,7 +79,7 @@ namespace Astrum
 
         private static void Prehook_0_ApiWorld(ref ApiWorld __0)
         {
-            __0.name = "";
+            __0.name = __0.name.ToLower().Replace("game", "gamē").Replace("club", "clüb");
             __0.tags = new();
         }
     }
